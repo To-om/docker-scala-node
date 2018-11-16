@@ -5,7 +5,7 @@ ENV DEBIAN_FRONTEND noninteractive
 RUN \
 	apt update													&& \
 	apt upgrade -y -q												&& \
-	apt install -y -q wget gnupg apt-transport-https git								&& \
+	apt install -y -q wget gnupg apt-transport-https git bzip2							&& \
 	echo 'deb http://ppa.launchpad.net/webupd8team/java/ubuntu cosmic main' > /etc/apt/sources.list.d/java.list	&& \
 	apt-key adv --no-tty --keyserver hkp://keyserver.ubuntu.com:80 --recv 0xC2518248EEA14886			&& \
 	echo 'deb https://dl.bintray.com/sbt/debian /' > /etc/apt/sources.list.d/sbt.list				&& \
@@ -15,10 +15,10 @@ RUN \
 	apt install -o APT::Install-Suggests=0 -o APT::Install-Recommends=0 -y -q oracle-java8-installer sbt		&& \
 	echo 'dash dash/sh select false' | debconf-set-selections							&& \
 	dpkg-reconfigure dash								 				&& \
-	adduser --disabled-password --gecos user user --shell /bin/bash							&& \
+	adduser --disabled-password --gecos drone --shell /bin/bash --home /drone drone					&& \
 	rm -rf /var/lib/apt/lists
 
-USER user
+USER drone
 
 RUN \
 	wget -qO- https://raw.githubusercontent.com/creationix/nvm/v0.33.11/install.sh | bash				&& \
