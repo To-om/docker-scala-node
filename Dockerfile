@@ -15,7 +15,7 @@ RUN \
 	apt install -o APT::Install-Suggests=0 -o APT::Install-Recommends=0 -y -q oracle-java8-installer sbt		&& \
 	echo 'dash dash/sh select false' | debconf-set-selections							&& \
 	dpkg-reconfigure dash								 				&& \
-	adduser --disabled-password --gecos drone --shell /bin/bash --home /drone drone					&& \
+	adduser --disabled-password --gecos drone --shell /bin/bash --home /home/drone drone				&& \
 	rm -rf /var/lib/apt/lists
 
 USER drone
