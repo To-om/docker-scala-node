@@ -5,7 +5,7 @@ ENV DEBIAN_FRONTEND noninteractive
 RUN \
 	apt update													&& \
 	apt upgrade -y -q												&& \
-	apt install -y -q wget gnupg apt-transport-https git bzip2 rpm							&& \
+	apt install -y -q wget gnupg apt-transport-https git bzip2 rpm build-essential fakeroot devscripts		&& \
 	echo 'deb http://ppa.launchpad.net/webupd8team/java/ubuntu cosmic main' > /etc/apt/sources.list.d/java.list	&& \
 	apt-key adv --no-tty --keyserver hkp://keyserver.ubuntu.com:80 --recv 0xC2518248EEA14886			&& \
 	echo 'deb https://dl.bintray.com/sbt/debian /' > /etc/apt/sources.list.d/sbt.list				&& \
